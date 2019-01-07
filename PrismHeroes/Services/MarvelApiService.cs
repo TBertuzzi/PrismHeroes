@@ -43,11 +43,13 @@ namespace PrismHeroes.Services
 
                         var personagem = new Personagem();
 
+                        personagem.Id = resultado.data.results[0].id;
                         personagem.Nome = resultado.data.results[0].name;
                         personagem.Descricao = resultado.data.results[0].description;
                         personagem.UrlImagem = resultado.data.results[0].thumbnail.path + "." +
                             resultado.data.results[0].thumbnail.extension;
                         personagem.UrlWiki = resultado.data.results[0].urls[1].url;
+
 
                         personagens.Add(personagem);
 

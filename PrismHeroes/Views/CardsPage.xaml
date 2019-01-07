@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:swipecards="clr-namespace:SwipeCards.Controls;assembly=SwipeCards.Controls"
+             Padding="0,20,0,0" BackgroundColor="#EEEEEE"
+             x:Class="PrismHeroes.Views.CardsPage">
+    
+    <swipecards:CardStackView
+            x:Name="CardStackView"
+            ItemsSource="{Binding Personagens}"
+            Margin="20, 60">
+
+        <swipecards:CardStackView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="20,30" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                              <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image HeightRequest="150" 
+                               WidthRequest = "150"
+                               Source="{Binding UrlImagem}"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                              />
+                        
+                        <Label Grid.Row="1" 
+                               Grid.Column="0"
+                               Text="{Binding Nome}"
+                               FontSize="Large"
+                               TextColor="#FF5525"/>
+                        
+                         <Label Grid.Row="2" 
+                               Grid.Column="0"
+                               Text="{Binding Descricao}"
+                               FontSize="Small"/>
+                        
+                    </Grid>
+            </DataTemplate>
+        </swipecards:CardStackView.ItemTemplate>
+
+    </swipecards:CardStackView> 
+    
+</ContentPage>
