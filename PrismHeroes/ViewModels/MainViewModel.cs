@@ -35,13 +35,22 @@ namespace PrismHeroes.ViewModels
 
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
+            await LoadAsync();
+        }
+
+        public override async void OnNavigatedTo(INavigationParameters parameters)
+        {
             var navigationMode = parameters.GetNavigationMode();
             if (navigationMode == NavigationMode.Back)
             {
+                Console.Write("Voltei!");
                 return;
             }
+            else
+            {
+                Console.Write("Navegando para");
+            }
 
-            await LoadAsync();
         }
 
         private async Task ExecuteExibirPersonagemCommand(Personagem personagem)
