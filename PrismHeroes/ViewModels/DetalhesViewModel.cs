@@ -7,7 +7,13 @@ namespace PrismHeroes.ViewModels
 {
     public class DetalhesViewModel : ViewModelBase
     {
-        private Personagem Personagem { get; set; }
+
+        private Personagem _personagem;
+        public Personagem Personagem
+        {
+            get => _personagem;
+            set => SetProperty(ref _personagem, value);
+        }
 
         protected DetalhesViewModel(INavigationService navigationService,
                 IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
@@ -16,7 +22,7 @@ namespace PrismHeroes.ViewModels
 
         }
 
-        public override void OnNavigatedTo(INavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
 
             if (parameters.ContainsKey("personagem"))
