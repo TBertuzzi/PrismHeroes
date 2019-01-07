@@ -37,17 +37,17 @@ namespace PrismHeroes
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("/NavigationPage/CardsPage");
+            await NavigationService.NavigateAsync("/NavigationPage/MenuPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            //Automatico
-            containerRegistry.RegisterForNavigation<MainPage,MainPageViewModel>();
-            //Implicito
+
+            containerRegistry.RegisterForNavigation<MainPage, MainViewModel>();
             containerRegistry.RegisterForNavigation<DetalhesPage, DetalhesViewModel>();
             containerRegistry.RegisterForNavigation<CardsPage, CardsViewModel>();
+            containerRegistry.RegisterForNavigation<MenuPage, MenuViewModel>();
 
             containerRegistry.RegisterSingleton<IMarvelApiService, MarvelApiService>();
         }

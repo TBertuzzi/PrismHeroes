@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Prism.Commands;
 using Prism.Navigation;
@@ -9,7 +10,7 @@ using PrismHeroes.Services;
 
 namespace PrismHeroes.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         public ObservableCollection<Personagem> Personagens { get; }
 
@@ -18,7 +19,7 @@ namespace PrismHeroes.ViewModels
 
         IMarvelApiService _MarvelApiService;
 
-        protected MainPageViewModel(INavigationService navigationService,
+        protected MainViewModel(INavigationService navigationService,
                 IPageDialogService pageDialogService,IMarvelApiService marvelApiService) : base(navigationService, pageDialogService)
         {
             Title = "Herois Marvel";
@@ -26,7 +27,11 @@ namespace PrismHeroes.ViewModels
             Personagens = new ObservableCollection<Personagem>();
             _MarvelApiService = marvelApiService;
 
+
+
         }
+
+       
 
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {

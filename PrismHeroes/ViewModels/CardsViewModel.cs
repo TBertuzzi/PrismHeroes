@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Prism.Navigation;
 using Prism.Services;
@@ -17,17 +18,38 @@ namespace PrismHeroes.ViewModels
         protected CardsViewModel(INavigationService navigationService,
                 IPageDialogService pageDialogService, IMarvelApiService marvelApiService) : base(navigationService, pageDialogService)
         {
-            Title = "Herois Marvel";
+            Title = "Cartões Marvel";
 
             Personagens = new ObservableCollection<Personagem>();
             _MarvelApiService = marvelApiService;
 
+            IsActiveChanged += HandleIsActiveTrue;
+            IsActiveChanged += HandleIsActiveFalse;
+
+        }
+
+        private async void HandleIsActiveTrue(object sender, EventArgs args)
+        {
+            if (IsActive == false) return;
+
+                await LoadAsync();
+        }
+
+        private void HandleIsActiveFalse(object sender, EventArgs args)
+        {
+            if (IsActive == true) return;
+        }
+
+        public override void Destroy()
+        {
+            IsActiveChanged -= HandleIsActiveTrue;
+            IsActiveChanged -= HandleIsActiveFalse;
         }
 
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
 
-            await LoadAsync();
+          // await LoadAsync();
         }
 
         private async Task ExecuteExibirPersonagemCommand(Personagem personagem)
@@ -45,11 +67,12 @@ namespace PrismHeroes.ViewModels
         {
             try
             {
+                Personagens.Clear();
+
                 IsBusy = true;
 
                 var personagensMarvel = await _MarvelApiService.GetPersonagensAsync();
 
-                Personagens.Clear();
 
                 foreach (var personagem in personagensMarvel)
                 {
