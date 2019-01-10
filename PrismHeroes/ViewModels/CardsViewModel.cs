@@ -23,33 +23,33 @@ namespace PrismHeroes.ViewModels
             Personagens = new ObservableCollection<Personagem>();
             _MarvelApiService = marvelApiService;
 
-            //IsActiveChanged += HandleIsActiveTrue;
-            //IsActiveChanged += HandleIsActiveFalse;
+            IsActiveChanged += HandleIsActiveTrue;
+            IsActiveChanged += HandleIsActiveFalse;
 
         }
 
-        //private async void HandleIsActiveTrue(object sender, EventArgs args)
-        //{
-        //    if (IsActive == false) return;
+        private async void HandleIsActiveTrue(object sender, EventArgs args)
+        {
+            if (IsActive == false) return;
 
-        //        await LoadAsync();
-        //}
+                await LoadAsync();
+        }
 
-        //private void HandleIsActiveFalse(object sender, EventArgs args)
-        //{
-        //    if (IsActive == true) return;
-        //}
+        private void HandleIsActiveFalse(object sender, EventArgs args)
+        {
+            if (IsActive == true) return;
+        }
 
-        //public override void Destroy()
-        //{
-        //    IsActiveChanged -= HandleIsActiveTrue;
-        //    IsActiveChanged -= HandleIsActiveFalse;
-        //}
+        public override void Destroy()
+        {
+            IsActiveChanged -= HandleIsActiveTrue;
+            IsActiveChanged -= HandleIsActiveFalse;
+        }
 
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
 
-           await LoadAsync();
+          //await LoadAsync();
         }
 
         private async Task ExecuteExibirPersonagemCommand(Personagem personagem)

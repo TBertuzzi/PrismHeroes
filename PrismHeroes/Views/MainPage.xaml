@@ -27,6 +27,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
@@ -48,6 +49,11 @@
                                TextColor="#FF5525"/>
                         
                          <Label Grid.Row="1" 
+                               Grid.Column="1"
+                               Text="{Binding Descricao}"
+                               FontSize="Small"/>
+                        
+                        <Label Grid.Row="2" 
                                Grid.Column="1"
                                Text="{Binding Descricao}"
                                FontSize="Small"/>

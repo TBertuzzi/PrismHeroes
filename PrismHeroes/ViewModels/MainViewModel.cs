@@ -27,12 +27,9 @@ namespace PrismHeroes.ViewModels
             Personagens = new ObservableCollection<Personagem>();
             _MarvelApiService = marvelApiService;
 
-
-
         }
 
-       
-
+ 
         public override async void OnNavigatingTo(INavigationParameters parameters)
         {
             await LoadAsync();
